@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .error { color: red; }
+    .form-container { max-width: 400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Авторизация</h1>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('login') }}">
+      <label for="user_type">Тип пользователя</label><br>
+      <select name="user_type" id="user_type">
+        <option value="Администратор">Администратор</option>
+        <option value="Продавец">Продавец</option>
+        <option value="Менеджер по закупкам">Менеджер по закупкам</option>
+        <option value="Бухгалтер">Бухгалтер</option>
+        <option value="Клиент">Клиент</option>
+      </select><br><br>
+      
+      <label for="login_name">Логин</label><br>
+      <input type="text" name="login_name" id="login_name" required><br><br>
+      
+      <label for="password">Пароль</label><br>
+      <input type="password" name="password" id="password" required><br><br>
+      
+      <button type="submit">Авторизация</button>
+      <a href="{{ url_for('register') }}">Регистрация</a>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Отменённые заказы</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Отменённые заказы</h1>
+  {% if orders %}
+  <table>
+    <tr>
+      <th>№ заказа</th>
+      <th>Дата</th>
+      <th>Сумма</th>
+      <th>Накладная</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.order_id }}</td>
+      <td>{{ order.date }}</td>
+      <td>{{ order.total }}</td>
+      <td>{{ order.invoice_number }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>Нет отменённых заказов.</p>
+  {% endif %}
+  <br>
+  <a href="{{ url_for('dashboard') }}">Назад</a>
+</body>
+</html>

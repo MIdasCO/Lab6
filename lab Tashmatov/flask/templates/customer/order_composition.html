@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Состав заказа (чек)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Состав заказа (чек)</h1>
+  {% if msg %}
+    <p style="color:red;">{{ msg }}</p>
+  {% endif %}
+  <!-- Форма для добавления товара -->
+  <form method="POST" action="{{ url_for('order_composition') }}">
+    <label for="flower_id">Выберите цветок:</label>
+    <select name="flower_id" id="flower_id">
+      {% for flower in flowers %}
+        <option value="{{ flower.id }}">{{ flower.name }} - {{ flower.price }} руб.</option>
+      {% endfor %}
+    </select>
+    <br><br>
+    <label for="quantity">Количество:</label>
+    <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+    <br><br>
+    <button type="submit" name="action" value="add_item">Добавить в заказ</button>
+  </form>
+  
+  {% if items %}
+    <h2>Текущий заказ</h2>
+    <table>
+      <tr>
+        <th>Товар</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+      </tr>
+      {% for item in items %}
+        <tr>
+          <td>{{ item.flower_name }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price * item.quantity }}</td>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td colspan="3"><strong>Итого:</strong></td>
+        <td><strong>{{ total }}</strong></td>
+      </tr>
+    </table>
+    <!-- Форма оформления заказа с вводом суммы предоплаты -->
+    <form method="POST" action="{{ url_for('order_composition') }}">
+      <br>
+      <label for="amount_paid">Сумма предоплаты (руб.):</label>
+      <input type="number" name="amount_paid" id="amount_paid" step="0.01" min="0" required>
+      <br><br>
+      <button type="submit" name="action" value="place_order">Оформить заказ</button>
+    </form>
+  {% endif %}
+  <br>
+  <a href="{{ url_for('dashboard') }}">Назад</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Отмена заказа</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-container { max-width: 400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Отмена заказа</h1>
+    {% if msg %}
+      <p style="color:green;">{{ msg }}</p>
+    {% endif %}
+    {% if orders %}
+    <form method="POST" action="{{ url_for('order_cancellation') }}">
+      <label for="order_id">Выберите заказ для отмены:</label>
+      <select name="order_id" id="order_id">
+        {% for order in orders %}
+          <option value="{{ order.order_id }}">Заказ №{{ order.order_id }} ({{ order.date }})</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <button type="submit">Отменить заказ</button>
+    </form>
+    {% else %}
+      <p>Нет актуальных заказов для отмены.</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('dashboard') }}">Назад</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Зарплата сотрудников</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    table { border-collapse: collapse; width: 70%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Зарплата сотрудников</h1>
+  <table>
+    <tr>
+      <th>Номер</th>
+      <th>Дата</th>
+      <th>Начислено</th>
+      <th>Оплачено</th>
+      <th>Должность</th>
+      <th>Сотрудник</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+      <td>{{ row.number }}</td>
+      <td>{{ row.date }}</td>
+      <td>{{ row.accrued }}</td>
+      <td>{{ row.paid }}</td>
+      <td>{{ row.position }}</td>
+      <td>{{ row.employee }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+</body>
+</html>

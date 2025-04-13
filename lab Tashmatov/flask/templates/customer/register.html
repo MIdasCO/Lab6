@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .error { color: red; }
+    .form-container { max-width: 400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Регистрация</h1>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('register') }}">
+      <label for="client_type">Тип клиента</label><br>
+      <select name="client_type" id="client_type">
+        <option value="Физическое лицо">Физическое лицо</option>
+        <option value="Юридическое лицо">Юридическое лицо</option>
+      </select><br><br>
+      
+      <label for="region">Район</label><br>
+      <input type="text" name="region" id="region"><br><br>
+      
+      <label for="activity">Вид деятельности</label><br>
+      <input type="text" name="activity" id="activity"><br><br>
+      
+      <label for="last_name">Фамилия</label><br>
+      <input type="text" name="last_name" id="last_name"><br><br>
+      
+      <label for="first_name">Имя</label><br>
+      <input type="text" name="first_name" id="first_name"><br><br>
+      
+      <label for="patronymic">Отчество</label><br>
+      <input type="text" name="patronymic" id="patronymic"><br><br>
+      
+      <label for="login_name">Логин</label><br>
+      <input type="text" name="login_name" id="login_name" required><br><br>
+      
+      <label for="password">Пароль</label><br>
+      <input type="password" name="password" id="password" required><br><br>
+      
+      <label for="birth_date">Дата рождения</label><br>
+      <input type="date" name="birth_date" id="birth_date"><br><br>
+      
+      <button type="submit">Регистрация</button>
+      <a href="{{ url_for('login') }}">Отмена</a>
+    </form>
+  </div>
+</body>
+</html>

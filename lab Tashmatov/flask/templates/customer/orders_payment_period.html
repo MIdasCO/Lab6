@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оплата заказов за период</title>
+    <style>
+       body { font-family: Arial, sans-serif; padding: 20px; }
+       table { border-collapse: collapse; width: 100%; }
+       th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+       th { background-color: #eee; }
+    </style>
+</head>
+<body>
+    <h1>Оплата заказов за период</h1>
+    <form method="POST" action="{{ url_for('orders_payment_period') }}">
+        <label for="start_date">Начальная дата:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <br><br>
+        <label for="end_date">Конечная дата:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <br><br>
+        <button type="submit">Показать заказы</button>
+    </form>
+    <br>
+    {% if orders %}
+        <table>
+            <tr>
+                <th>№ Заказа</th>
+                <th>Дата</th>
+                <th>Общая сумма</th>
+                <th>Статус</th>
+                <th>Накладная</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_id }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.invoice_number }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Заказы не найдены или не выбраны</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('dashboard') }}">Назад</a>
+</body>
+</html>

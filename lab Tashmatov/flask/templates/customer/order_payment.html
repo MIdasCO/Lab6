@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Оплата заказа</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-container { max-width: 400px; margin: 0 auto; }
+    input, select { width: 100%; padding: 8px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Оплата заказа</h1>
+    {% if msg %}
+      <p style="color:green;">{{ msg }}</p>
+    {% endif %}
+    {% if orders %}
+    <form method="POST" action="{{ url_for('order_payment') }}">
+      <label for="order_id">Выберите заказ:</label>
+      <select name="order_id" id="order_id">
+        {% for order in orders %}
+          <option value="{{ order.order_id }}">Заказ №{{ order.order_id }} – Задолженность: {{ order.debt }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <label for="amount">Сумма оплаты (руб.):</label>
+      <input type="number" name="amount" id="amount" step="0.01" min="0" required>
+      <br>
+      <label for="payment_method">Способ оплаты:</label>
+      <select name="payment_method" id="payment_method">
+        <option value="наличные">Наличные</option>
+        <option value="карта">Карта</option>
+      </select>
+      <br><br>
+      <button type="submit">Оплатить</button>
+    </form>
+    {% else %}
+      <p>Нет заказов, требующих оплаты.</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('dashboard') }}">Назад</a>
+  </div>
+</body>
+</html>

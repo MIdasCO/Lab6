@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Панель бухгалтера</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    .button { display:inline-block; padding: 10px; margin: 5px; background: #eee; border:1px solid #ccc; text-decoration:none; color:#000; }
+  </style>
+</head>
+<body>
+  <h1>Панель бухгалтера</h1>
+  <div>
+    <h2>Товарооборот</h2>
+    <a class="button" href="{{ url_for('accountant_turnover_warehouse') }}">По складу</a>
+    <a class="button" href="{{ url_for('accountant_turnover_branch') }}">По филиалу</a>
+    <a class="button" href="{{ url_for('accountant_turnover_overall') }}">Общий</a>
+    <a class="button" href="{{ url_for('accountant_turnover_product') }}">По товару</a>
+    <a class="button" href="{{ url_for('accountant_turnover_category') }}">По категории товаров</a>
+  </div>
+  <div>
+    <h2>Продажи</h2>
+    <a class="button" href="{{ url_for('accountant_sales_warehouse') }}">По складу</a>
+    <a class="button" href="{{ url_for('accountant_sales_product_type') }}">По типу товара</a>
+    <a class="button" href="{{ url_for('accountant_sales_product') }}">По товару</a>
+    <a class="button" href="{{ url_for('accountant_sales_branch') }}">По филиалу</a>
+    <a class="button" href="{{ url_for('accountant_sales_client') }}">По клиенту</a>
+    <a class="button" href="{{ url_for('accountant_sales_employees') }}">По сотрудникам</a>
+    <a class="button" href="{{ url_for('accountant_sales_payment_type') }}">По типу оплаты</a>
+    <a class="button" href="{{ url_for('accountant_sales_promotions') }}">По акциям</a>
+  </div>
+  <div>
+    <h2>Поставки</h2>
+    <a class="button" href="{{ url_for('accountant_deliveries_product_type') }}">По типу товаров</a>
+    <a class="button" href="{{ url_for('accountant_deliveries_product') }}">По товару</a>
+    <a class="button" href="{{ url_for('accountant_deliveries_warehouse') }}">По складам</a>
+    <a class="button" href="{{ url_for('accountant_deliveries_suppliers') }}">По поставщикам</a>
+  </div>
+  <div>
+    <h2>Задолжённости и налоги</h2>
+    <a class="button" href="{{ url_for('accountant_debts_customers') }}">Задолжённость клиентов</a>
+    <a class="button" href="{{ url_for('accountant_debts_suppliers') }}">Задолженность перед поставщиками</a>
+    <a class="button" href="{{ url_for('accountant_debts_suppliers_detail') }}">Задолженность поставщиков</a>
+    <a class="button" href="{{ url_for('accountant_taxes') }}">Налоги</a>
+  </div>
+  <div>
+    <h2>Прибыль и зарплаты</h2>
+    <a class="button" href="{{ url_for('accountant_profitability_supplies') }}">Прибыльность по поставкам</a>
+    <a class="button" href="{{ url_for('accountant_break_even') }}">Точка безубыточности</a>
+    <a class="button" href="{{ url_for('accountant_salaries') }}">Зарплата сотрудников</a>
+    <a class="button" href="{{ url_for('accountant_profit_loss_report') }}">Отчет о прибылях/убытках</a>
+  </div>
+  <div>
+    <h2>Прочее</h2>
+    <a class="button" href="{{ url_for('accountant_auth_form') }}">Форма авторизации</a>
+  </div>
+  <br>
+  <a class="button" href="{{ url_for('logout') }}">Выйти</a>
+</body>
+</html>

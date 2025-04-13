@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Панель пользователя</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+    }
+    .button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      text-decoration: none;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      width: 300px;
+      text-align: center;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать, {{ user }} ({{ role }})!</h1>
+  <h2>Функциональные кнопки</h2>
+  <a class="button" href="{{ url_for('price_list') }}">Прайс-лист</a>
+  <a class="button" href="{{ url_for('order_composition') }}">Состав заказа (чек)</a>
+  <a class="button" href="{{ url_for('client_orders') }}">Заказы клиента</a>
+  <a class="button" href="{{ url_for('order_cancellation') }}">Форма отмены заказа</a>
+  <a class="button" href="{{ url_for('orders_payment_period') }}">Оплата заказов за период</a>
+  <a class="button" href="{{ url_for('order_contact_registration') }}">Форма регистрации контактов заказа</a>
+  <a class="button" href="{{ url_for('order_edit') }}">Форма редактирования состава заказа</a>
+  <a class="button" href="{{ url_for('current_discounts') }}">Скидки по акциям (текущим)</a>
+  <a class="button" href="{{ url_for('authorization_form') }}">Форма авторизации</a>
+  <a class="button" href="{{ url_for('client_debts') }}">Задолжённости клиентов</a>
+  <a class="button" href="{{ url_for('cancelled_orders') }}">Отменённые заказы</a>
+  <a class="button" href="{{ url_for('order_payment') }}">Форма оплаты заказа</a>
+  
+  <br>
+  <a href="{{ url_for('logout') }}">Выйти</a>
+</body>
+</html>

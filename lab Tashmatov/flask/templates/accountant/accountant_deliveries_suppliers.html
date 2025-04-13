@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Поставки по поставщикам</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    table { border-collapse: collapse; width: 80%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Поставки по поставщикам</h1>
+  <table>
+    <tr>
+      <th>Номер</th>
+      <th>Дата</th>
+      <th>Поставщик</th>
+      <th>Тип товара</th>
+      <th>Товар</th>
+      <th>Кол-во</th>
+      <th>Цена</th>
+      <th>Склад</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+      <td>{{ row.number }}</td>
+      <td>{{ row.date }}</td>
+      <td>{{ row.supplier }}</td>
+      <td>{{ row.product_type }}</td>
+      <td>{{ row.product }}</td>
+      <td>{{ row.quantity }}</td>
+      <td>{{ row.price }}</td>
+      <td>{{ row.warehouse }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+</body>
+</html>

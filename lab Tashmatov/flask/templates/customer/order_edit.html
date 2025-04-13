@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование заказа</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-container { max-width: 600px; margin: 0 auto; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Редактирование заказа</h1>
+    {% if msg %}
+      <p style="color:green;">{{ msg }}</p>
+    {% endif %}
+    <!-- Форма выбора заказа -->
+    <form method="POST" action="{{ url_for('order_edit') }}">
+      <label for="order_id">Выберите заказ для редактирования:</label>
+      <select name="order_id" id="order_id">
+        {% for order in orders %}
+          <option value="{{ order.order_id }}">Заказ №{{ order.order_id }} ({{ order.date }})</option>
+        {% endfor %}
+      </select>
+      <button type="submit" name="action" value="load">Загрузить заказ</button>
+    </form>
+    
+    {% if order %}
+      <h2>Редактирование заказа №{{ order.order_id }}</h2>
+      <form method="POST" action="{{ url_for('order_edit') }}">
+        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+        <table>
+          <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество (изменить)</th>
+            <th>Сумма</th>
+          </tr>
+          {% for item in order.items %}
+          <tr>
+            <td>{{ item.flower_name }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+              <input type="number" name="quantity_{{ loop.index0 }}" value="{{ item.quantity }}" min="1" required>
+            </td>
+            <td>{{ item.price * item.quantity }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br>
+        <button type="submit" name="action" value="update">Сохранить изменения</button>
+      </form>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('dashboard') }}">Назад</a>
+  </div>
+</body>
+</html>

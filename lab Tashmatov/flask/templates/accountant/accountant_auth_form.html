@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация бухгалтера</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    .form-container { max-width: 400px; margin: auto; }
+    input { width: 100%; padding: 8px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Авторизация бухгалтера</h1>
+    {% if message %}<p style="color:green;">{{ message }}</p>{% endif %}
+    <form method="POST" action="{{ url_for('accountant_auth_form') }}">
+      <label for="login">Логин:</label>
+      <input type="text" name="login" id="login" required>
+      <label for="password">Пароль:</label>
+      <input type="password" name="password" id="password" required>
+      <button type="submit">Войти</button>
+    </form>
+    <br>
+    <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+  </div>
+</body>
+</html>

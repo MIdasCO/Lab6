@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация контактов заказа</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-container { max-width: 500px; margin: 0 auto; }
+    input, select { width: 100%; padding: 8px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Регистрация контактов заказа</h1>
+    <form method="POST" action="#">
+      <label for="contact_type">Тип контакта</label>
+      <select id="contact_type" name="contact_type">
+        <option value="телефон">Телефон</option>
+        <option value="email">Email</option>
+      </select>
+      
+      <label for="contact_value">Контактное значение</label>
+      <input type="text" id="contact_value" name="contact_value" required>
+      
+      <button type="submit">Сохранить</button>
+    </form>
+    <br>
+    <a href="{{ url_for('dashboard') }}">Назад</a>
+  </div>
+</body>
+</html>

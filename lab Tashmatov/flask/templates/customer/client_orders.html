@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказы клиента</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Заказы клиента</h1>
+  <table>
+    <tr>
+      <th>№ заказа</th>
+      <th>Дата</th>
+      <th>Стоимость</th>
+      <th>№ накладной</th>
+      <th>Статус</th>
+    </tr>
+    <!-- Пример строки -->
+    <tr>
+      <td>101</td>
+      <td>2025-04-01</td>
+      <td>50 000 руб.</td>
+      <td>12345</td>
+      <td>В работе</td>
+    </tr>
+  </table>
+  <br>
+  <a href="{{ url_for('dashboard') }}">Назад</a>
+</body>
+</html>

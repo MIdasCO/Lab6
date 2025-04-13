@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Товарооборот по категории товаров</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    table { border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Товарооборот по категории товаров</h1>
+  <table>
+    <tr>
+      <th>Номер</th>
+      <th>Категория</th>
+      <th>Поставлено</th>
+      <th>Продано</th>
+      <th>Остаток</th>
+      <th>Выручка</th>
+      <th>Прибыль/убыток</th>
+      <th>Налоги</th>
+      <th>Чистая прибыль</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+      <td>{{ row.number }}</td>
+      <td>{{ row.category }}</td>
+      <td>{{ row.supply_qty }}</td>
+      <td>{{ row.sales_qty }}</td>
+      <td>{{ row.remaining }}</td>
+      <td>{{ row.revenue }}</td>
+      <td>{{ row.profit_loss }}</td>
+      <td>{{ row.taxes }}</td>
+      <td>{{ row.net_profit }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+</body>
+</html>

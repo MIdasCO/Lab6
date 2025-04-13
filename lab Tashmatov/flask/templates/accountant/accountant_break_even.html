@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Точка безубыточности</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    table { border-collapse: collapse; width: 70%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Точка безубыточности</h1>
+  <table>
+    <tr>
+      <th>Номер</th>
+      <th>Тип товара</th>
+      <th>Товар</th>
+      <th>Цена покупки</th>
+      <th>Цена продажи</th>
+      <th>Прибыль</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+      <td>{{ row.number }}</td>
+      <td>{{ row.product_type }}</td>
+      <td>{{ row.product }}</td>
+      <td>{{ row.purchase_price }}</td>
+      <td>{{ row.sale_price }}</td>
+      <td>{{ row.profit }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+</body>
+</html>

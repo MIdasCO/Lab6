@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Состав заказов (Customer)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; }
+    table { border-collapse: collapse; width: 90%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Состав заказов (Customer)</h1>
+  <table>
+    <tr>
+      <th>№ Заказа</th>
+      <th>Клиент</th>
+      <th>Дата</th>
+      <th>Товары</th>
+      <th>Итого</th>
+      <th>Статус</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.order_id }}</td>
+      <td>{{ order.client }}</td>
+      <td>{{ order.date }}</td>
+      <td>
+        <ul>
+          {% for item in order.items %}
+            <li>{{ item.flower_name }} ({{ item.quantity }} шт.)</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>{{ order.total }}</td>
+      <td>{{ order.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{{ url_for('accountant_dashboard') }}">Назад</a>
+</body>
+</html>
